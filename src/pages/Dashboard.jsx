@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import { getSectors, updateUser } from '../services';
+import Notification, { error, success } from '../components/Notification';
 import SectorSelect from '../components/SectorSelect';
+import InputLabel from '../components/InputLabel';
 
 const Dashboard = () => {
 
@@ -22,10 +24,14 @@ const Dashboard = () => {
 
     const handleUpdate = async (e) => {
         e.preventDefault();
+        if (!form.name || !form.username || !form.password || !form.sector) {
+            error("Please fill in all fields!");
+        }
         const updatedUser = await updateUser(user._id, form)
         localStorage.setItem("user", JSON.stringify(updatedUser.user))
         localStorage.setItem("sectorName", updatedUser.sectorName);
-        setSectorname(updatedUser.sectorName)
+        setSectorname(updatedUser.sectorName);
+        success("Updated successfully");
     }
 
     const handleLogout = () => {
@@ -53,14 +59,19 @@ const Dashboard = () => {
     }, [token, sectorName])
 
     return (
-        <div className='container mx-auto'>
+        <>
             <div className='text-right pt-2'>
                 <button onClick={handleLogout} className='p-2 bg-red-700 hover:bg-red-900 duration-150 text-white rounded'>Logout</button>
             </div>
+            <Notification />
             <div className='flex flex-col'>
                 <form onSubmit={handleUpdate}>
-                    <div className='lg:flex gap-4 w-full'>
-                        <div className='w-full'>
+                    <div className='lg:flex gap-4'>
+                        <InputLabel label="Name" name="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+                        <InputLabel label="Username" name="username" value={form.username} onChange={(e) => setForm({ ...form, username: e.target.value })} />
+                        <InputLabel label="Password" name="password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} type="password" />
+                    </div>
+                    {/* <div className='w-full'>
                             <label htmlFor="name">Name</label>
                             <input className='block w-full p-2 outline-none rounded' value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
                         </div>
@@ -71,8 +82,7 @@ const Dashboard = () => {
                         <div className='w-full'>
                             <label htmlFor="password">Password</label>
                             <input className='block w-full p-2 outline-none rounded' value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} type="password" />
-                        </div>
-                    </div>
+                        </div> */}
                     <div className='mt-2'>
                         <h1 className='font-semibold'>Current Sector : {sectorName}</h1>
                     </div>
@@ -87,7 +97,7 @@ const Dashboard = () => {
                     </div>
                 </form>
             </div>
-        </div>
+        </>
     )
 }
 

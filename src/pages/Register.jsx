@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom';
 import Button from '../components/Button';
-import FloatingLabel from '../components/FloatingLabel';
+import InputLabel from '../components/InputLabel';
 import Notification, { error } from '../components/Notification';
 import SectorSelect from '../components/SectorSelect';
 import { getSectors, newUser } from '../services';
@@ -63,9 +63,9 @@ const Register = () => {
             <form onSubmit={handleFormSubmit}>
                 <h1 className='text-lg py-2'>Please fill in all fields : </h1>
                 <div className='lg:flex gap-4'>
-                    <FloatingLabel label="Name" name="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
-                    <FloatingLabel label="Username" name="username" value={form.username} onChange={(e) => setForm({ ...form, username: e.target.value })} />
-                    <FloatingLabel label="Password" name="password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} type="password" />
+                    <InputLabel label="Name" name="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+                    <InputLabel label="Username" name="username" value={form.username} onChange={(e) => setForm({ ...form, username: e.target.value })} />
+                    <InputLabel label="Password" name="password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} type="password" />
                 </div>
                 <h1 className='text-lg py-2'>Please select a sector : </h1>
                 <SectorSelect sectors={sectors} loading={loading} value={form.sector} onSelect={selectSector} name="sector" />

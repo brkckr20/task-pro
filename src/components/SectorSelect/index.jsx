@@ -33,7 +33,7 @@ export default function SelectSector({ sectors, loading, onSelect }) {
             {parents.length > 0 && parents.map((parent, key) => {
                 const categories = filteredCategories(parent)
                 return (
-                    <div key={key} className="w-[300px] flex flex-col border border-gray-300 rounded p-4 flex-shrink-0 bg-white">
+                    <div key={key} className="w-[300px] h-[250px] overflow-y-auto flex flex-col border border-gray-300 rounded p-2 flex-shrink-0 bg-white">
                         {categories.map(c => (
                             <button
                                 key={c._id}
@@ -52,7 +52,7 @@ export default function SelectSector({ sectors, loading, onSelect }) {
                 )
             })}
             {getFilteredCategories.length > 0 && (
-                <div className="w-[300px] flex flex-col border border-gray-300 rounded p-4 flex-shrink-0 bg-white">
+                <div className="w-[300px] h-[250px] overflow-y-auto flex flex-col border border-gray-300 rounded p-2 flex-shrink-0 bg-white">
                     {getFilteredCategories.map(c => (
                         <button
                             key={c._id}
