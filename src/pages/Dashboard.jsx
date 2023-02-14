@@ -4,6 +4,7 @@ import { getSectors, updateUser } from '../services';
 import Notification, { error, success } from '../components/Notification';
 import SectorSelect from '../components/SectorSelect';
 import InputLabel from '../components/InputLabel';
+import Button from '../components/Button';
 
 const Dashboard = () => {
 
@@ -61,7 +62,7 @@ const Dashboard = () => {
     return (
         <>
             <div className='text-right pt-2'>
-                <button onClick={handleLogout} className='p-2 bg-red-700 hover:bg-red-900 duration-150 text-white rounded'>Logout</button>
+                <button onClick={handleLogout} className='px-2 md:py-2  bg-red-700 hover:bg-red-900 duration-150 text-white rounded'>Logout</button>
             </div>
             <Notification />
             <div className='flex flex-col'>
@@ -71,29 +72,17 @@ const Dashboard = () => {
                         <InputLabel label="Username" name="username" value={form.username} onChange={(e) => setForm({ ...form, username: e.target.value })} />
                         <InputLabel label="Password" name="password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} type="password" />
                     </div>
-                    {/* <div className='w-full'>
-                            <label htmlFor="name">Name</label>
-                            <input className='block w-full p-2 outline-none rounded' value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
-                        </div>
-                        <div className='w-full'>
-                            <label htmlFor="username">Username</label>
-                            <input className='block w-full p-2 outline-none rounded' value={form.username} onChange={(e) => setForm({ ...form, username: e.target.value })} />
-                        </div>
-                        <div className='w-full'>
-                            <label htmlFor="password">Password</label>
-                            <input className='block w-full p-2 outline-none rounded' value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} type="password" />
-                        </div> */}
                     <div className='mt-2'>
-                        <h1 className='font-semibold'>Current Sector : {sectorName}</h1>
+                        <h1 className='font-semibold text-sm md:text-base'>Current Sector : {sectorName}</h1>
                     </div>
                     <div className='mt-2'>
-                        <h1>Choose one of the options below to change the sector!</h1>
+                        <h1 className='text-sm md:text-base'>Choose one of the options below to change the sector!</h1>
                     </div>
                     <div className='mt-2'>
                         <SectorSelect sectors={sectors} loading={loading} onSelect={selectSector} name="sector" />
                     </div>
-                    <div>
-                        <button type='submit' className='p-2 bg-blue-600 hover:bg-blue-800 duration-150 text-white mt-2 rounded'>Update</button>
+                    <div className='mt-2'>
+                        <Button type='submit' text="Update" />
                     </div>
                 </form>
             </div>

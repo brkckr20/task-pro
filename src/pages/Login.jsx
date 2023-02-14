@@ -39,13 +39,17 @@ const Login = () => {
                         <label className='block' htmlFor="password">Password</label>
                         <input value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} className='w-full p-2 border outline-none' name='password' type="password" id="password" />
                     </div>
-                    <div className='mt-2'>
-                        <button type='submit' className='bg-green-600 hover:bg-green-700 rounded w-full duration-150 p-2 text-white'>Login</button>
+                    <div className='mt-2 flex md:flex-col gap-2'>
+                        <div className='w-full'>
+                            <button type='submit' className='bg-green-600 hover:bg-green-700 rounded w-full duration-150 p-2 text-white'>Login</button>
+                        </div>
+                        <div className='w-full'>
+                            <Link to="/" className='bg-pink-600 hover:bg-pink-700 rounded inline-block text-center w-full duration-150 p-2 text-white'>Register</Link>
+                        </div>
                     </div>
+
                 </form>
-                <div className='mt-2 w-[350px]'>
-                    <Link to="/" className='bg-pink-600 hover:bg-pink-700 rounded inline-block text-center w-full duration-150 p-2 text-white'>Register</Link>
-                </div>
+
             </div>
         </div>
     )
