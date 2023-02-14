@@ -69,9 +69,9 @@ const Register = () => {
                 </div>
                 <h1 className='text-lg py-2'>Please select a sector : </h1>
                 <SectorSelect sectors={sectors} loading={loading} value={form.sector} onSelect={selectSector} name="sector" />
-                <div className='my-1'>
-                    <input type="checkbox" id='agree' checked={form.agree} onChange={(e) => setForm({ ...form, agree: e.target.checked })} />
-                    <label htmlFor='agree' className='ml-2 cursor-pointer'>Agree to terms</label>
+                <div className='my-1 flex items-center'>
+                    <input type="checkbox" className='myCheckbox cursor-pointer' id='agree' checked={form.agree} onChange={(e) => setForm({ ...form, agree: e.target.checked })} />
+                    <label htmlFor='agree' className='ml-2 cursor-pointer font-semibold'>Agree to terms</label>
                 </div>
                 <Button text="Save" />
             </form>
